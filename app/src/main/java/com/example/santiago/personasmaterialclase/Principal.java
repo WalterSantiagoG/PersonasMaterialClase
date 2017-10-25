@@ -32,7 +32,7 @@ public class Principal extends AppCompatActivity {
 
         listado = (RecyclerView)findViewById(R.id.lstPersonas);
         res = this.getResources();
-        personas = new ArrayList<>();
+        personas = Datos.obtenerPersonas();
 
         /*personas.add(new Persona(R.drawable.images2,"1145432156","Juan","Sanjuan",2));
         personas.add(new Persona(R.drawable.images3,"1145432157","Manuel","Perez",2));
