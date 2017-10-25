@@ -1,5 +1,6 @@
 package com.example.santiago.personasmaterialclase;
 
+import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -32,7 +33,8 @@ public class Principal extends AppCompatActivity {
         listado = (RecyclerView)findViewById(R.id.lstPersonas);
         res = this.getResources();
         personas = new ArrayList<>();
-        personas.add(new Persona(R.drawable.images2,"1145432156","Juan","Sanjuan",2));
+
+        /*personas.add(new Persona(R.drawable.images2,"1145432156","Juan","Sanjuan",2));
         personas.add(new Persona(R.drawable.images3,"1145432157","Manuel","Perez",2));
         personas.add(new Persona(R.drawable.images,"1145432158","Angelina","Sarmiento",2));
         personas.add(new Persona(R.drawable.images2,"1145432156","Juan","Sanjuan",2));
@@ -40,20 +42,20 @@ public class Principal extends AppCompatActivity {
         personas.add(new Persona(R.drawable.images,"1145432158","Angelina","Sarmiento",2));
         personas.add(new Persona(R.drawable.images2,"1145432156","Juan","Sanjuan",2));
         personas.add(new Persona(R.drawable.images3,"1145432157","Manuel","Perez",2));
-        personas.add(new Persona(R.drawable.images,"1145432158","Angelina","Sarmiento",2));
+        personas.add(new Persona(R.drawable.images,"1145432158","Angelina","Sarmiento",2));*/
 
         adapter = new AdaptadorPersona(this,personas);
         llm = new LinearLayoutManager(this);
         listado.setLayoutManager(llm);
         listado.setAdapter(adapter);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        //FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 
     }
 
-    public void click(View v){
-        Snackbar.make(v, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show();
+    public void agregar(View v){
+        Intent i = new Intent(Principal.this,CrearPersonas.class);
+        startActivity(i);
     }
 
 }
