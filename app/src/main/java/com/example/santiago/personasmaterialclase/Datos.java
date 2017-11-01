@@ -24,4 +24,8 @@ public class Datos {
     public static ArrayList<Persona> obtenerPersonas(){
         return personas;
     }
+
+    public static void setPersonas(ArrayList<Persona>per){
+        personas=per;
+    }
 }
