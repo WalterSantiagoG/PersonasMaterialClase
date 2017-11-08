@@ -29,11 +29,13 @@ public class AdaptadorPersona extends RecyclerView.Adapter<AdaptadorPersona.Pers
     private ArrayList<Persona> personas;
     private Resources res;
     private Context contexto;
+    private OnPersonaClickListener clickListener;
 
-    public AdaptadorPersona(Context contexto, ArrayList<Persona> personas){
+    public AdaptadorPersona(Context contexto, ArrayList<Persona> personas, OnPersonaClickListener clickListener){
         this.personas=personas;
         this.res=contexto.getResources();
         this.contexto=contexto;
+        this.clickListener=clickListener;
     }
 
     @Override
@@ -45,7 +47,6 @@ public class AdaptadorPersona extends RecyclerView.Adapter<AdaptadorPersona.Pers
     @Override
     public void onBindViewHolder(final PersonaViewHolder holder, int position) {
         final Persona p = personas.get(position);
-        //holder.foto.setImageDrawable(ResourcesCompat.getDrawable(res,p.getFoto(),null));
 
         StorageReference storageReference = FirebaseStorage.getInstance().getReference();
         storageReference.child(p.getFoto()).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
@@ -57,6 +58,13 @@ public class AdaptadorPersona extends RecyclerView.Adapter<AdaptadorPersona.Pers
         holder.cedula.setText(p.getCedula());
         holder.nombre.setText(p.getNombre());
         holder.apellido.setText(p.getApellido());
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                clickListener.onPersonaClick(p);
+            }
+        });
     }
 
     @Override
@@ -78,6 +86,10 @@ public class AdaptadorPersona extends RecyclerView.Adapter<AdaptadorPersona.Pers
             nombre = (TextView)item.findViewById(R.id.lblNombre);
             apellido = (TextView)item.findViewById(R.id.lblApellido);
         }
+    }
+
+    public interface OnPersonaClickListener{
+        void onPersonaClick(Persona p);
     }
 
 }

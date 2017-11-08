@@ -21,7 +21,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class Principal extends AppCompatActivity {
+public class Principal extends AppCompatActivity implements AdaptadorPersona.OnPersonaClickListener{
 
     private RecyclerView listado;
     private ArrayList<Persona> personas;
@@ -40,20 +40,9 @@ public class Principal extends AppCompatActivity {
 
         listado = (RecyclerView)findViewById(R.id.lstPersonas);
         res = this.getResources();
-        //personas = Datos.obtenerPersonas();
         personas = new ArrayList<>();
 
-        /*personas.add(new Persona(R.drawable.images2,"1145432156","Juan","Sanjuan",2));
-        personas.add(new Persona(R.drawable.images3,"1145432157","Manuel","Perez",2));
-        personas.add(new Persona(R.drawable.images,"1145432158","Angelina","Sarmiento",2));
-        personas.add(new Persona(R.drawable.images2,"1145432156","Juan","Sanjuan",2));
-        personas.add(new Persona(R.drawable.images3,"1145432157","Manuel","Perez",2));
-        personas.add(new Persona(R.drawable.images,"1145432158","Angelina","Sarmiento",2));
-        personas.add(new Persona(R.drawable.images2,"1145432156","Juan","Sanjuan",2));
-        personas.add(new Persona(R.drawable.images3,"1145432157","Manuel","Perez",2));
-        personas.add(new Persona(R.drawable.images,"1145432158","Angelina","Sarmiento",2));*/
-
-        adapter = new AdaptadorPersona(this,personas);
+        adapter = new AdaptadorPersona(this.getApplicationContext(),personas,this);
         llm = new LinearLayoutManager(this);
         listado.setLayoutManager(llm);
         listado.setAdapter(adapter);
@@ -88,4 +77,17 @@ public class Principal extends AppCompatActivity {
         startActivity(i);
     }
 
+    @Override
+    public void onPersonaClick(Persona p) {
+        Intent i = new Intent(Principal.this,ModificarPersona.class);
+        Bundle b = new Bundle();
+        b.putString("id",p.getId());
+        b.putString("cedula",p.getCedula());
+        b.putString("nombre",p.getNombre());
+        b.putString("apellido",p.getApellido());
+        b.putString("foto",p.getFoto());
+
+        i.putExtra("datos",b);
+        startActivity(i);
+    }
 }
