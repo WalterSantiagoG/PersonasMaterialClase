@@ -17,4 +17,12 @@
     <string name="mensaje_ventana_eliminar">¿Desea eliminar esta persona?</string>
     <string name="opcion_positivo">Si</string>
     <string name="mensaje_negativo">No</string>
+    <string name="login">Login</string>
+    <string name="usuario">Usuario</string>
+    <string name="digite_contraseña">Digite contraseña</string>
+    <string name="digite_usuario">Digite usuario</string>
+    <string name="ingresar">Ingresar</string>
+    <string name="correo">Correo</string>
+    <string name="contrasena">Contraseña</string>
+    <string name="registrarse">Registrarse</string>
 </resources>
